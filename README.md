@@ -2,10 +2,10 @@
 
 
 <p align="center">
-<img src="https://i.gifer.com/E5L9.gif" width="400" height="250" />
+<img src="https://github.com/MattWillFlood/Introduction-to-Computer-Programming-in-Julia/blob/main/Ralf.gif" width="400" height="250" />
 </p>
  
-.........................................................................................................
+
 
 ## About
 
