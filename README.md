@@ -1,18 +1,19 @@
 # Introduction to Computer Programming in Julia
 
-
 <p align="center">
 <img src="https://github.com/MattWillFlood/Introduction-to-Computer-Programming-in-Julia/blob/main/Ralf.gif" width="400" height="250" />
 </p>
- 
-
 
 ## About
 
 This repository contains the learning material for an introdcutory course to computer programming using the [Julia programming language](https://julialang.org/).
-This course consists of 6 chapters, the material for which is provided in the folders above.
+This course consists of 6 chapters, the material for which is provided in the folders above.    
 
-### Syllabus:
+The material covered in each chapter is supported by a tutorial julia notebook file (Pluto.jl), _Week X.jl_.
+A homework assignment sheet for independent practice is also included.
+
+
+## Syllabus:
 
 1. ***Introduction to Julia***
 	+ Why learn Julia?
@@ -50,13 +51,9 @@ This course consists of 6 chapters, the material for which is provided in the fo
 	+ Data visualisation
 
 
-......................................................................................................
-
-
 ## License and Terms of Use
 
 This course material is the copyright property of Matthew Flood.      
 Reuse of this material without permission is prohibited.
 
 
-......................................................................................................
