@@ -20,88 +20,43 @@ This course consists of 6 chapters, the material for which is provided in the fo
 	+ Installing packages
 	+ Pluto
 
-2. *** File Format, Data Types, Objects, Plotting***
+2. ***File Format, Data Types, Objects, Plotting***
 	+ Julia file format
 	+ Data type fundamentals
 	+ Collections
 	+ Plotting 101
 
 3. ***Control Flow***
-	+ _For_ loops
+	+ _For_ loops, _While_ loops and the Bang(!) operator
+	+ Conditional (_if-else_) statements
+	+ _Try-catch_ statements
+	+ User input
 
-4. 
+4. ***Functions and Object-Oriented Programming***
+	+ What is a function?
+	+ Function arguments
+	+ What is a composite type (Struct)?
+	+ _Struct_ methods
+
+5. ***Maths in Julia***
+	+ Relationship to MatLab & NumPy
+	+ Important maths packages
+	+ Statistics 101
+	+ Vector/Matrix operations
+
+6. ***DataFrames.jl***
+	+ Relationship to Pandas & R
+	+ DataFrames 101
+	+ Data visualisation
 
 
-5. 
-
-
-6. 
-
-
-
-
-***It is important to clarify that the entropy functions herein described 
-estimate entropy in the context of probability theory and information theory as
-defined by Shannon, and not thermodynamic or other entropies from classical physics.***
-
-
-
-
-.........................................................................................................
+......................................................................................................
 
 
 ## License and Terms of Use
 
-EntropyHub is licensed under the Apache License (Version 2.0) and is free to
-use by all on condition that the following reference be included on any outputs
-realized using the software:
+This course material is the copyright property of Matthew Flood.      
+Reuse of this material without permission is prohibited.
 
 
-.........................................................................................................
-
-
-## Contact
-
-If you find this package useful, please consider starring it on GitHub, 
-MatLab File Exchange, PyPI or Julia Packages as this helps us to gauge user 
-satisfaction.
-
-If you have any questions about the package or identify any issues, 
-please do not hesitate to contact us at:    info@entropyhub.xyz
-
-
-***Thank you*** for using EntropyHub.
-
-Yours in research,
-
-Matt
-
- 
-.........................................................................................................
-
-
-
-
-
-
-        
-        
-        
-        
-         ___  _   _  _____  _____  ____  ____  _     _          
-        |  _|| \ | ||_   _||     \|    ||    || \   / |   ___________ 
-        | \_ |  \| |  | |  |   __/|    ||  __| \ \_/ /   /  _______  \
-        |  _|| \ \ |  | |  |   \  |    || |     \   /   |  /  ___  \  |
-        | \_ | |\  |  | |  | |\ \ |    || |      | |    | |  /   \  | | 
-        |___||_| \_|  |_|  |_| \_||____||_|      |_|   _|_|__\___/  | | 
-         _   _  _   _  ____                           / |__\______\/  | 
-        | | | || | | ||    \     An open-source      |  /\______\__|_/ 
-        | |_| || | | ||    |     toolkit for         | |  /   \  | | 
-        |  _  || | | ||    \     entropic time-      | |  \___/  | |          
-        | | | || |_| ||     \    series analysis     |  \_______/  |
-        |_| |_|\_____/|_____/                         \___________/ 
-        
-        
-<p  align="center">
-	<img src="https://github.com/MattWillFlood/EntropyHub/blob/main/Graphics/EntropyHubLogo3.png" width="250" height="350"/>
-</p>
+......................................................................................................
