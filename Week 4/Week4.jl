@@ -18,7 +18,7 @@ end
 plotly()
 
 # ╔═╡ 487fc300-e3a2-40ed-aa37-d19ae5ab96f7
-md""" #### Let's start by looking at the methods of some functions"""
+md""" #### Let's start by looking at the methods of some funky functions"""
 
 # ╔═╡ d64b24bf-34ca-4f36-8ab4-ed41b4f1d503
 methods(chomp) # Here we seee that chomp has two methods
@@ -74,15 +74,23 @@ some_randies
 Duke_Bday = DateTime(1955, 4, 16, 16, 4, 55, 35)
 
 # ╔═╡ 7c3ae9d3-482e-4ca9-a267-e2471f9beec3
+# The typeof function tells you the type of object you are using.
+# Here it is a DateTime object from the Dates package.
 typeof(Duke_Bday)
 
 # ╔═╡ 9b6bd558-5217-4e42-82a4-407d4c355aca
 floor(Duke_Bday, Dates.Hour)
+#= When using Date objects, we need to provide 2 input arguments.
+1. the object to be floored
+2. the precision of the 'flooring', i.e. the nearest day/month/year/hour, etc. =#
 
 # ╔═╡ dc526d28-126d-43fb-bbab-52583a4065cd
 floor(Duke_Bday, Dates.Year) 
 #= Notice here that when you use a DateTime object, floor has two required arguments
  The first is the date/time to be 'floored', and the second is the precision of flooring =#
+
+# ╔═╡ 3f1e5da7-49a2-41bf-9941-daaa79ed5436
+ceil(Duke_Bday, Dates.Month)
 
 # ╔═╡ 1c51ee9d-6539-4d77-92a3-e746159c7940
 md""" #### Let's start writing some funky functions"""
@@ -92,9 +100,14 @@ RadiusEquations(r) = 4*pi*(r^2), 2*pi*r, (4/3)*pi*(r^3)
 
 
 # ╔═╡ 1f7a5ea5-bea1-40ee-a6c0-e304391893c4
-area, circ, volume = RadiusEquations(.8)
+area, circ, volume = RadiusEquations(3.8)
+
+# ╔═╡ 74108ce5-d338-4b2e-ab82-eed6f6662851
+circ
 
 # ╔═╡ 37fe188e-ba7e-460b-935b-8fe4260514c9
+# This funcion answers the user based on their age.
+
 function How_Old(Age)
 	if Age < 20
 		println("TikTok! TikTok TikTok TikTok TikTok...  👶")
@@ -108,9 +121,11 @@ function How_Old(Age)
 end		
 
 # ╔═╡ 279ad946-71a8-47a7-ab7a-3fc49a14d64d
-How_Old(77)
+How_Old("37")
 
 # ╔═╡ f605f994-0e0e-4986-b996-128a322b3c42
+# Here, we will specify that the input 'Age' must be an integer.
+
 function How_Old_Again(Age::Int)
 	if Age < 20
 		println("TikTok! TikTok TikTok TikTok TikTok...  👶")
@@ -125,12 +140,13 @@ end
 
 # ╔═╡ 2c8c9df5-92f3-47e0-852b-21fd0b190244
 How_Old_Again(44.4)
+# This error let's the user know that the'closest version' of the function uses an integer input.
 
 # ╔═╡ a394e3c2-ecbe-4de7-a5f8-f04112c3cbd2
 How_Old_Again(44)
 
 # ╔═╡ 671c4153-78af-4155-9184-ca8ac6e35ad2
-# Creat a function to returnt he roots of a quadratic equation
+# Creat a function to returns the roots of a quadratic equation
 # x = -b ± √b² - 4ac / 2a
 
 function Roots(a, b, c)
@@ -140,6 +156,8 @@ function Roots(a, b, c)
 		
 	return root1, root2
 end
+
+# If we didn't include the return of root 1 and root 2, only root 2 would be passed to the user because it was the last  variable created in the function.
 
 # ╔═╡ 6b8da1ae-3ab7-456a-bcb4-44b1f1cb38f0
 # So if we have a quadratic equation:
@@ -165,9 +183,13 @@ end
 begin
 	X = rand(1:22, 100)
 	Norm_X = Normalise(X, std)
+	#NOTE: Do not use ( and ) when passing a function to another function.
 	plot(X)
 	plot!(Norm_X)
 end
+
+# ╔═╡ 7870d752-cd1f-4b34-8ca7-772b5955d6bc
+?s
 
 # ╔═╡ 8341198f-124c-409d-b1ad-c8ab65062fdc
 begin
@@ -190,7 +212,9 @@ Re_Normalise(rand(100), 5)
 # This tells the user that the second argument must be a function
 
 # ╔═╡ c7c2a3bb-2573-458a-b5a7-b3139d2f9015
-function CarTax(price, age,  enginesize::Float64=2.4)
+# After your required arguments, place a semicolon to separate required and keyword arguments.
+
+function CarTax(price, age; enginesize::Float64=2.4)
 		
 	rate = (price/pi)^(age/10)
 	taxcost = rate * enginesize * 0.8
@@ -203,7 +227,7 @@ end
 CarTax(30000, 3)
 
 # ╔═╡ 8c7c17a1-9d0d-4c3a-9c6f-34af887eb4f0
-CarTax(30000, 3, 1.6)
+CarTax(30000, 3, enginesize=1.6)
 
 # ╔═╡ 1baf09d6-a1e4-4582-8a33-c48e57d7f2a6
 CarTax(30000, enginesize= 3, 1.6)
@@ -224,7 +248,7 @@ end
 MaxDose💊(76)
 
 # ╔═╡ 4d88cba1-1ad0-47c1-a58f-0aa1793a41cf
-MaxDose💊(33, Allergy=true)
+MaxDose💊(33, Allergy=false, SleepyTime=3.0)
 
 # ╔═╡ ab143edb-8df2-4967-9c75-749674fd393c
 md""" #### Composing composite types 😝
@@ -285,6 +309,8 @@ Contact_007.Age
 Contact_007.Age += 4
 
 # ╔═╡ 5f60c4f4-de19-4f46-a2ab-ffc6ee658cf4
+# This example demonstrates how we can perform operations in functions with just a struct as an input.
+
 mutable struct kitchen
 	Tiled::Bool
 	Dishwasher::Bool
@@ -302,6 +328,9 @@ DreamHouse = kitchen(true, false, 1000.00, 21.2, "Samsung", "Bosch")
 
 # ╔═╡ ba8a975b-ad5f-464e-8de2-32cb2b58670f
 DreamHouse.Extra_Cost = 645
+
+# ╔═╡ 662b9ed1-c105-4c60-8438-8f7f2c20bdeb
+typeof(DreamHouse)
 
 # ╔═╡ 612cfcfc-3ca3-435e-a94b-c32b329c819d
 function Decision(info::kitchen)
@@ -347,9 +376,11 @@ end
 # ╠═7c3ae9d3-482e-4ca9-a267-e2471f9beec3
 # ╠═9b6bd558-5217-4e42-82a4-407d4c355aca
 # ╠═dc526d28-126d-43fb-bbab-52583a4065cd
+# ╠═3f1e5da7-49a2-41bf-9941-daaa79ed5436
 # ╠═1c51ee9d-6539-4d77-92a3-e746159c7940
 # ╠═7679cb94-d070-400a-8e3d-552b23c1ca2b
 # ╠═1f7a5ea5-bea1-40ee-a6c0-e304391893c4
+# ╠═74108ce5-d338-4b2e-ab82-eed6f6662851
 # ╠═37fe188e-ba7e-460b-935b-8fe4260514c9
 # ╠═279ad946-71a8-47a7-ab7a-3fc49a14d64d
 # ╠═f605f994-0e0e-4986-b996-128a322b3c42
@@ -359,6 +390,7 @@ end
 # ╠═6b8da1ae-3ab7-456a-bcb4-44b1f1cb38f0
 # ╠═a19f457c-c005-4827-afaf-ffb93c0f6297
 # ╠═cebaef4b-6fb9-42d2-b92e-f7c65ed95a75
+# ╠═7870d752-cd1f-4b34-8ca7-772b5955d6bc
 # ╠═8341198f-124c-409d-b1ad-c8ab65062fdc
 # ╠═d7698573-a978-46ab-b452-2410866b8e64
 # ╠═3ee0956d-4af6-47b4-bb89-6e2a08d27a7c
@@ -387,6 +419,7 @@ end
 # ╠═7c1a9f39-b5ef-4c4d-bb24-0fab95129f01
 # ╠═c61bdc64-7551-4fe1-a8ba-7ec36172ed12
 # ╠═ba8a975b-ad5f-464e-8de2-32cb2b58670f
+# ╠═662b9ed1-c105-4c60-8438-8f7f2c20bdeb
 # ╠═612cfcfc-3ca3-435e-a94b-c32b329c819d
 # ╠═70c7ad91-84fd-4505-99d5-7b437304c085
 # ╠═265093d1-3cf3-4bb6-aaad-d4a6b746c1e1
