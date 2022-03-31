@@ -1,0 +1,62 @@
+Year,Title,Role,Notes
+1992,Emily Brontë's Wuthering Heights,Heathcliff,
+1993,The Baby of Mâcon,The Bishop's son,
+1993,Schindler's List,Amon Göth,
+1994,Quiz Show,Charles Van Doren,
+1995,Strange Days,Lenny Nero,
+1996,The English Patient,Count László de Almássy,
+1997,Oscar and Lucinda,Oscar Hopkins,
+1998,The Avengers,John Steed,
+1998,The Prince of Egypt,Ramesses II,Voice
+1999,Sunshine,Ignatz Sonnenschein/Adam Sors/Ivan Sors,
+1999,Onegin,Evgeny Onegin,Also executive producer
+1999,The End of the Affair,Maurice Bendrix,
+1999,Seasons of Giving,Narrator,Voice; direct-to-video
+2000,The Miracle Maker,Jesus Christ,Voice
+2002,Spider,"Dennis ""Spider"" Cleg",
+2002,The Good Thief,Tony Angel,Uncredited
+2002,Red Dragon,Francis Dolarhyde,
+2002,Maid in Manhattan,Christopher Marshall,
+2005,The Chumscrubber,Mayor Michael Ebbs,
+2005,Chromophobia,Stephen Tulloch,
+2005,The Constant Gardener,Justin Quayle,
+2005,Wallace & Gromit: The Curse of the Were-Rabbit,Lord Victor Quartermaine,Voice
+2005,The White Countess,Todd Jackson,
+2005,Harry Potter and the Goblet of Fire,Lord Voldemort,
+2006,Land of the Blind,Joe,
+2007,Harry Potter and the Order of the Phoenix,Lord Voldemort,
+2008,In Bruges,Harry Waters,
+2008,The Duchess,"William Cavendish, 5th Duke of Devonshire",
+2008,The Reader,Older Michael Berg,
+2009,The Hurt Locker,Contractor Team Leader,
+2009,Harry Potter and the Half-Blood Prince,Lord Voldemort,Cameo
+2010,Cemetery Junction,Mr. Kendrick,
+2010,Clash of the Titans,Hades,
+2010,Nanny McPhee and the Big Bang,Lord Gray,
+2010,The Wildest Dream,George Mallory,
+2010,Harry Potter and the Deathly Hallows – Part 1,Lord Voldemort,
+2011,Harry Potter and the Deathly Hallows – Part 2,Lord Voldemort,
+2011,Coriolanus,Coriolanus,Also director and producer
+2012,Wrath of the Titans,Hades,
+2012,Skyfall,Gareth Mallory / M,
+2012,Great Expectations,Magwitch,
+2013,The Invisible Woman,Charles Dickens,Also director
+2014,The Grand Budapest Hotel,Monsieur Gustave H.,
+2014,Two Women,M.A. Rakitin,
+2015,A Bigger Splash,Harry Hawkes,
+2015,Spectre,Gareth Mallory / M,
+2016,"Hail, Caesar!",Laurence Laurentz,
+2016,Kubo and the Two Strings,Moon King / Raiden,Voice
+2017,The Lego Batman Movie,Alfred Pennyworth,Voice
+2017,Sea Sorrow,Prospero,
+2018,The White Crow,Alexander Pushkin,Also director and producer
+2018,Holmes & Watson,Professor Moriarty/Jacob Musgrave,
+2019,Official Secrets,Ben Emmerson,
+2019,The Lego Movie 2: The Second Part,Alfred Pennyworth,Voice; cameo
+2020,Dolittle,Barry,Voice
+2021,The Dig,Basil Brown,
+2021,No Time to Die,Gareth Mallory / M,
+2021,The Forgiven,David Henninger,
+2021,The King's Man,Duke of Oxford,
+TBA,The Menu,,Filming
+TBA,The Wonderful Story of Henry Sugar,,Filming
