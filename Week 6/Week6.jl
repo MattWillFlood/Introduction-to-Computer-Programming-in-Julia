@@ -23,9 +23,6 @@ begin
     # OR DarkMode.Toolbox(theme="default")
 end
 
-# ╔═╡ 487fc300-e3a2-40ed-aa37-d19ae5ab96f7
-md""" #### Let's start by importing data file"""
-
 # ╔═╡ 5e2b475c-b810-44e7-b6fa-7cebc12e14a7
 Data = CSV.read("StudyData.csv", DataFrame)
 
@@ -129,14 +126,91 @@ first(Data,4)
 # ╔═╡ dda41941-4cae-40c3-9959-551e78be3619
 @df Data marginalscatter(:Age, :ExpectedLifespan, xlabel="Age", ylabel="EL")
 
+# ╔═╡ 8b1d2f76-a079-44f5-aecc-23a465aa8028
+@df Data cornerplot([:Age :Weight :ExpectedLifespan :HealthScore])
+
 # ╔═╡ 9de76f37-7a52-48ef-a04d-e77c79bb3837
 names(Data)
+
+# ╔═╡ f7ccdc77-2a1e-4b94-9399-c660423c6936
+@df Data violin(:Group, :ExpectedLifespan, linewidth=0)
+
+# ╔═╡ 67132a93-9706-4ce7-a713-b22ef6096ed2
+@df Data violin(Data.:"Itchy Eyebrows?", :ExpectedLifespan, side=:right, linewidth=0, label="Itchy Eyebrows?")
+
+# ╔═╡ 50b47535-253a-4d9a-9645-b727ad8a1b53
+@df Data violin!(Data.:"Webbed Toes?", :ExpectedLifespan, side=:left,
+	linewidth=2,  label = "Webbed Toes?", color=:green)
+
+# ╔═╡ 69b61e91-cb2a-49ff-acb7-5c3e1979b723
+begin
+	@df Data dotplot!(Data.:"Itchy Eyebrows?",
+		:ExpectedLifespan, side=:right, marker=(:red,stroke(0)), label="")
+	
+	@df Data dotplot!(Data.:"Webbed Toes?", 
+		:ExpectedLifespan, side=:left, marker=(:yellow,stroke(0)), label="")
+end
+
+# ╔═╡ 97bcc5b6-111e-411c-8f25-b676ef90cc2d
+begin
+	@df Data violin(string.(Data.:"Itchy Eyebrows?"), 
+		:ExpectedLifespan, side=:right, linewidth=0, label="Itchy Eyebrows?")
+	
+	@df Data violin!(string.(Data.:"Webbed Toes?"),
+		:ExpectedLifespan, side=:left, linewidth=0, 
+		label = "Webbed Toes?", color=:green)
+	
+	@df Data dotplot!(string.(Data.:"Itchy Eyebrows?"),
+		:ExpectedLifespan, side=:right, marker=(:red,stroke(0)), label="")
+	
+	@df Data dotplot!(string.(Data.:"Webbed Toes?"), 
+		:ExpectedLifespan, side=:left, marker=(:yellow,stroke(0)), label="")
+	
+	ylabel!("Lifespan Estimate")
+end
+
+# ╔═╡ 162af3d2-22d9-4371-93c4-f8ad03793fdb
+DataGroups = groupby(Data, ["Condition","Hairy Knees?"])
+
+# ╔═╡ 2d98420e-3c41-49e0-acfa-3f46d17c85bb
+keys(DataGroups)
+
+# ╔═╡ 5974c2fd-5eb5-4537-ae4c-21175741d782
+DataGroups[1]
+
+# ╔═╡ 6d5b13f2-45ba-4099-b0bd-5abd47f21f81
+temp = plot();
+
+# ╔═╡ b4a8586c-89aa-4ea1-9e74-e25c205cbec7
+for sdf in DataGroups
+	 scatter!(sdf.ExpectedLifespan, sdf.Age, sdf.HealthScore,
+		label = sdf.Condition[1]*"   "*string(sdf.:"Hairy Knees?"[1]))
+end
+
+# ╔═╡ 33dca60f-f6b5-4a79-841e-c7da0c4cfd71
+begin
+	xlabel!("Expected Lifespan")
+	ylabel!("Age")
+	#zlabel!("Condition")
+end
+
+
+# ╔═╡ 1fe23e98-bdeb-4f1d-b4e6-688953cf2d5e
+#display(temp)
+
+# ╔═╡ 5a54e05d-c9a3-4800-95f5-61e1291853b1
+begin
+	DemMeans = []
+	for sdf in DataGroups
+	 push!(DemMeans, mean(sdf.ExpectedLifespan))
+	end
+	plot(DemMeans)
+end
 
 # ╔═╡ Cell order:
 # ╠═2b77c301-778a-4e7d-b176-194362ebec5e
 # ╠═d58cad3e-a866-4e0e-8f29-821188861a12
 # ╠═1cd6f911-7cca-4e14-9a0e-0885902df8d1
-# ╠═487fc300-e3a2-40ed-aa37-d19ae5ab96f7
 # ╠═5e2b475c-b810-44e7-b6fa-7cebc12e14a7
 # ╠═6f00175d-ab7b-4d2f-b3f9-5c6155f0412e
 # ╠═c73c47aa-337e-4c8a-b687-7330b10d40a4
@@ -170,4 +244,18 @@ names(Data)
 # ╠═8dfcd3fd-0602-4c5a-8163-167f58679831
 # ╠═e012e266-f54d-4ad2-811c-4e7446f962e7
 # ╠═dda41941-4cae-40c3-9959-551e78be3619
+# ╠═8b1d2f76-a079-44f5-aecc-23a465aa8028
 # ╠═9de76f37-7a52-48ef-a04d-e77c79bb3837
+# ╠═f7ccdc77-2a1e-4b94-9399-c660423c6936
+# ╠═67132a93-9706-4ce7-a713-b22ef6096ed2
+# ╠═50b47535-253a-4d9a-9645-b727ad8a1b53
+# ╠═69b61e91-cb2a-49ff-acb7-5c3e1979b723
+# ╠═97bcc5b6-111e-411c-8f25-b676ef90cc2d
+# ╠═162af3d2-22d9-4371-93c4-f8ad03793fdb
+# ╠═2d98420e-3c41-49e0-acfa-3f46d17c85bb
+# ╠═5974c2fd-5eb5-4537-ae4c-21175741d782
+# ╠═6d5b13f2-45ba-4099-b0bd-5abd47f21f81
+# ╠═b4a8586c-89aa-4ea1-9e74-e25c205cbec7
+# ╠═33dca60f-f6b5-4a79-841e-c7da0c4cfd71
+# ╠═1fe23e98-bdeb-4f1d-b4e6-688953cf2d5e
+# ╠═5a54e05d-c9a3-4800-95f5-61e1291853b1
