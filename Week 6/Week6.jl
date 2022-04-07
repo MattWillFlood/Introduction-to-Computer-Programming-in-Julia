@@ -24,16 +24,21 @@ begin
 end
 
 # ╔═╡ 5e2b475c-b810-44e7-b6fa-7cebc12e14a7
+# If we want to import the CSV with a different delimiter, we use the kwarg: delim = ','.
 Data = CSV.read("StudyData.csv", DataFrame)
+
+# ╔═╡ a54afdf1-060e-4995-98ae-357c3f936329
+#Data = CSV.read(raw"C:\mflood\StudyData.csv", DataFrame)
 
 # ╔═╡ 6f00175d-ab7b-4d2f-b3f9-5c6155f0412e
 first(Data,3)
 
 # ╔═╡ c73c47aa-337e-4c8a-b687-7330b10d40a4
-last(Data,4)
+last(Data,4) # You can specify the number of rows you want to show with an integer second argument.
 
 # ╔═╡ b8008dda-039e-4123-aad4-1068ed3887ed
 names(Data)
+# names() tells us the column header names in our DataFrame
 
 # ╔═╡ 83a0d5b3-4acd-44c6-9a1d-7e1512cbcafc
 propertynames(Data)
@@ -55,10 +60,11 @@ columnindex(Data,"Itchy Eyebrows?")
 unique(Data.Condition)
 
 # ╔═╡ fe8fcd96-f0d6-4d8f-b1a0-73c4cd1769c5
-unique(Data.Group)
+unique(Data.Age)
 
 # ╔═╡ e16ad9c7-322b-4c67-9746-9b077eb593fa
-describe(Data)
+describe(Data,  :mean, cols=:Age)
+# Does exactly what it says on the tin - it describes the content of our DataFrame
 
 # ╔═╡ c5058cb7-20cb-45a6-830d-e7103f4c860f
 scatter(Data.Age,Data.Weight, xlabel="Age", ylabel="Weight", group=Data.Condition, hover=Data.:"Subject ID")
@@ -67,31 +73,42 @@ scatter(Data.Age,Data.Weight, xlabel="Age", ylabel="Weight", group=Data.Conditio
 skewness(Data.Age)
 
 # ╔═╡ 84cbf844-5a0c-42b5-a592-5cda92d452c8
-kurtosis(Data.ExpectedLifespan)
+mad(Data.ExpectedLifespan)
 
 # ╔═╡ 8fedbbd4-4b76-4202-a2af-000d11286525
-select(Data, ["Webbed Toes?", "HealthScore"])
+WTHS = select(Data, ["Webbed Toes?", "HealthScore"])
 
 # ╔═╡ 62233778-aaf2-43a5-ba79-0dc6df61fae9
-select(Data, ["Webbed Toes?", :HealthScore])
+select(Data, ["Weight", :HealthScore])
+# Note here that the two variables in the second argument are different (a string and a symbol).
+# They must be of the same type to work correctly
 
 # ╔═╡ 99e19ffe-4f3f-451f-b70d-b67794ff1790
-Data[:, ["Webbed Toes?", "HealthScore"]]
+Data[1:3:111, ["Webbed Toes?", "HealthScore"]]
 
 # ╔═╡ ee44190f-c43a-49e6-94ca-a4fdc942aab8
 begin
 	Loc1 = columnindex(Data,"Webbed Toes?")
 	Loc2 = columnindex(Data,"HealthScore")
 end
+# columnindex tells us where the column belonging to that name is located
+
+# ╔═╡ 7a5c912d-6247-4d55-bb24-8cc279d82024
+Loc1
 
 # ╔═╡ dffc07da-2cb6-4d66-aeb6-a6bdac0fac8a
 Data[:,[Loc1,Loc2]]
 
+# ╔═╡ 79b77d1f-0051-4a05-bc28-829df5914298
+unique(Data.Group)
+
 # ╔═╡ 5839a26a-ce28-4ba8-a47b-92fa152e1f47
-Data[Data.Group.=="B", [Loc1,Loc2]]
+YYY = Data[Data.Group.=="B", [Loc1,Loc2]]
 
 # ╔═╡ 8ccb4838-9335-40a3-85f9-feddd106bb05
-SortData = sort(Data,"Subject ID")
+SortData = sort(Data,["Weight", "Age"], rev=[true, false])
+# Sort sorts smallest to largest by default.
+# Use the rev kwarg to sort largest to smallest
 
 # ╔═╡ ffc61afa-4547-4c72-b6f4-92ba1e3f389d
 😐 ,😄 ,😢 = 1, 2, 3
@@ -106,7 +123,7 @@ NewData = DataFrame(
 nrow(NewData)
 
 # ╔═╡ f09f7a94-6016-4ed0-a28d-5dc61cf469e5
-nrow(SortData)
+ncol(NewData)
 
 # ╔═╡ 64cb6d33-c332-4225-a58d-860d11567d62
 FullData = hcat(SortData, NewData)
@@ -133,7 +150,7 @@ first(Data,4)
 names(Data)
 
 # ╔═╡ f7ccdc77-2a1e-4b94-9399-c660423c6936
-@df Data violin(:Group, :ExpectedLifespan, linewidth=0)
+@df Data violin(:Group, :ExpectedLifespan, linewidth=3)
 
 # ╔═╡ 67132a93-9706-4ce7-a713-b22ef6096ed2
 @df Data violin(Data.:"Itchy Eyebrows?", :ExpectedLifespan, side=:right, linewidth=0, label="Itchy Eyebrows?")
@@ -169,11 +186,17 @@ begin
 	ylabel!("Lifespan Estimate")
 end
 
+# ╔═╡ d87b2f4a-f001-415b-bb33-e747f199d014
+first(Data,5)
+
 # ╔═╡ 162af3d2-22d9-4371-93c4-f8ad03793fdb
 DataGroups = groupby(Data, ["Condition","Hairy Knees?"])
+# This function groups data by all possible permutations of unique values in each specified column.
+# Here we have 3 conditions (Diabetes / Hayfever / Chickenpox) x 2 Hairy Knees values (True / false) = 6 groups
 
 # ╔═╡ 2d98420e-3c41-49e0-acfa-3f46d17c85bb
 keys(DataGroups)
+# keys tells you the combination of column variables for each group
 
 # ╔═╡ 5974c2fd-5eb5-4537-ae4c-21175741d782
 DataGroups[1]
@@ -212,6 +235,7 @@ end
 # ╠═d58cad3e-a866-4e0e-8f29-821188861a12
 # ╠═1cd6f911-7cca-4e14-9a0e-0885902df8d1
 # ╠═5e2b475c-b810-44e7-b6fa-7cebc12e14a7
+# ╠═a54afdf1-060e-4995-98ae-357c3f936329
 # ╠═6f00175d-ab7b-4d2f-b3f9-5c6155f0412e
 # ╠═c73c47aa-337e-4c8a-b687-7330b10d40a4
 # ╠═b8008dda-039e-4123-aad4-1068ed3887ed
@@ -230,7 +254,9 @@ end
 # ╠═62233778-aaf2-43a5-ba79-0dc6df61fae9
 # ╠═99e19ffe-4f3f-451f-b70d-b67794ff1790
 # ╠═ee44190f-c43a-49e6-94ca-a4fdc942aab8
+# ╠═7a5c912d-6247-4d55-bb24-8cc279d82024
 # ╠═dffc07da-2cb6-4d66-aeb6-a6bdac0fac8a
+# ╠═79b77d1f-0051-4a05-bc28-829df5914298
 # ╠═5839a26a-ce28-4ba8-a47b-92fa152e1f47
 # ╠═8ccb4838-9335-40a3-85f9-feddd106bb05
 # ╠═ffc61afa-4547-4c72-b6f4-92ba1e3f389d
@@ -251,6 +277,7 @@ end
 # ╠═50b47535-253a-4d9a-9645-b727ad8a1b53
 # ╠═69b61e91-cb2a-49ff-acb7-5c3e1979b723
 # ╠═97bcc5b6-111e-411c-8f25-b676ef90cc2d
+# ╠═d87b2f4a-f001-415b-bb33-e747f199d014
 # ╠═162af3d2-22d9-4371-93c4-f8ad03793fdb
 # ╠═2d98420e-3c41-49e0-acfa-3f46d17c85bb
 # ╠═5974c2fd-5eb5-4537-ae4c-21175741d782
